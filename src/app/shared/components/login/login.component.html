@@ -1,0 +1,51 @@
+<p-toast></p-toast>
+<br /><br />
+<div class="flex-center">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+    <p-card header="Login - Grupo 3" [style]="{ width: '360px' }">
+
+      <ng-template pTemplate="header">
+        <img
+          alt="Card"
+          src="https://www.sunat.gob.pe/p/imagenes/logoamplio.png"
+        />
+      </ng-template>
+
+      <div class="flex flex-column gap-2">
+        <p-floatLabel>
+          <input pInputText id="username" formControlName="usuario" required/>
+          <label for="username">Usuario</label>
+        </p-floatLabel>
+      </div>
+
+      <br /><br />
+
+      <div class="flex flex-column gap-2">
+        <p-floatLabel>
+          <input
+            id="password"
+            type="password"
+            pInputText
+            formControlName="password"
+            required
+          />
+          <label for="password">Contraseña</label>
+        </p-floatLabel>
+      </div>
+
+      <ng-template pTemplate="footer">
+        <div class="flex-center">
+          <p-button
+            icon="pi pi-verified"
+            label="Iniciar sesión"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </form>
+</div>
+

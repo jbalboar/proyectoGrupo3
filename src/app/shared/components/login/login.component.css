@@ -1,0 +1,18 @@
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.p-field {
+    margin-bottom: 1rem;
+}
+
+:host {
+    display: block;
+    background: linear-gradient(to right, #b8d8ee, #7b9afe);
+    background-size: cover; /* Para que cubra toda el área */
+    background-position: center; /* Para centrar la imagen */
+    background-repeat: no-repeat; /* Para evitar la repetición de la imagen */
+    height: 100vh; /* Asegura que cubra toda la altura de la ventana */
+    padding: 0;
+  }
