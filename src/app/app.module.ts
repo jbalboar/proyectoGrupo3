@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { TareasModule } from './features/tareas/tareas.module';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { InputIconModule } from 'primeng/inputicon';
     BrowserAnimationsModule,
     FloatLabelModule,
     FormsModule,
+    TareasModule,
     AngularFireModule.initializeApp(environment.firebasase),
     AngularFireAuthModule
   ],
