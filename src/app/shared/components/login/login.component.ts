@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { SharedMessageService } from '../../../core/services/message/shared-message.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  providers: [MessageService],
+  providers: [MessageService, SharedMessageService],
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -16,6 +17,7 @@ export class LoginComponent {
 
   constructor(
     private messageService: MessageService,
+    private sharedMessageService: SharedMessageService,
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
@@ -46,7 +48,7 @@ export class LoginComponent {
           localStorage.setItem('token', token || '');
           localStorage.setItem('userId', email);
           console.log('Inicio de sesión exitoso. Token:', datosUsuario);
-          //this.sharedMessageService.setMessage('success', 'Ok', 'Autenticación correcta');
+          this.sharedMessageService.setMessage('success', 'Ok', 'Autenticación correcta');
           this.router.navigate(['/tarea']);
         }
       } catch (error) {

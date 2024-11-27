@@ -14,7 +14,11 @@ import { ToastModule } from 'primeng/toast';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { MessageService } from 'primeng/api';
 import { SharedMessageService } from '../../core/services/message/shared-message.service';
-
+import { TableModule } from 'primeng/table';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { TagModule } from 'primeng/tag';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,11 @@ import { SharedMessageService } from '../../core/services/message/shared-message
     ToastModule,
     BrowserAnimationsModule,
     FloatLabelModule,
+    TableModule,
+    IconFieldModule,
+    InputIconModule,
+    TagModule,
+    DropdownModule
   ],
   exports: [
     TareaComponent,

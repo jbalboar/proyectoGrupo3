@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { TareasModule } from './features/tareas/tareas.module';
+import { SharedMessageService } from './core/services/message/shared-message.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TareasModule } from './features/tareas/tareas.module';
   providers: [
     provideClientHydration(),
     provideHttpClient(),
-    MessageService
+    MessageService,
+    SharedMessageService
   ],
   bootstrap: [AppComponent]
 })

@@ -11,6 +11,7 @@ import { MessageService } from 'primeng/api';
 })
 export class MenuComponent {
 
+
   constructor(private messageService: MessageService, private authService: AuthService, private router: Router) {}
 
   userId: string = localStorage?.getItem('userId') as string;
@@ -20,5 +21,9 @@ export class MenuComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     this.router.navigate(['/login']);
+  }
+
+  mostrarLista() {
+    this.router.navigate(['/tarea/lista']);
   }
 }
