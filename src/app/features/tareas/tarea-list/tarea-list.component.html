@@ -20,7 +20,7 @@
                     pInputText 
                     type="text" 
                     (input)="applyFilterGlobal($event, 'contains')"
-                    placeholder="Search keyword" />
+                    placeholder="Buscar" />
             </p-iconField>
         </div>
     </ng-template>
@@ -36,21 +36,21 @@
                 <p-columnFilter 
                     type="text"
                     field="titulo" 
-                    placeholder="Search by name" 
+                    placeholder="Buscar por Titulo" 
                     ariaLabel="Filter Name" />
             </th>
             <th>
                 <p-columnFilter 
                     type="text"
                     field="descripcion"
-                    placeholder="Search by country" 
+                    placeholder="Buscar por Descripción" 
                     ariaLabel="Filter Country" />
             </th>
             <th>
                 <p-columnFilter 
                     type="text"
                     field="responsable"
-                    placeholder="Search by country" 
+                    placeholder="Buscar por Responsable" 
                     ariaLabel="Filter Country" />
             </th>
              
@@ -61,7 +61,7 @@
                             [ngModel]="value" 
                             [options]="statuses"
                             (onChange)="filter($event.value)" 
-                            placeholder="Select One" 
+                            placeholder="Seleccione" 
                             [showClear]="true">
                                 <ng-template let-option pTemplate="item">
                                     <p-tag 
