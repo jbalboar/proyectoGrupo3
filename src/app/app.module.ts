@@ -21,6 +21,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { TareasModule } from './features/tareas/tareas.module';
 import { SharedMessageService } from './core/services/message/shared-message.service';
+import { ConvertirBooleanPipe } from './core/pipes/convertir-boolean.pipe';
 
 @NgModule({
   declarations: [

@@ -1,8 +1,9 @@
 export interface Tarea {
     id:number,
-    titulo:string,
-    descripcion:string,
+    title:string,
+    detail:string,
     responsable:string,
-    fecha:Date,
-    estado:string
+    fechaInicial:string,
+    fechaFinal: string,
+    completed:Boolean
 }

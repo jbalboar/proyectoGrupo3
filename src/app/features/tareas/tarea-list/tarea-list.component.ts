@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Tarea } from '../../../core/models/tarea/tarea';
 import { Table } from 'primeng/table';
 import { TareaService } from '../../../core/services/tarea/tarea.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tarea-list',
@@ -11,37 +12,30 @@ import { TareaService } from '../../../core/services/tarea/tarea.service';
 export class TareaListComponent implements OnInit {
   tareas!: Tarea[];
 
-  @ViewChild('dt') dt: Table | undefined;
-
   statuses!: any[];
 
   loading: boolean = true;
 
   activityValues: number[] = [0, 100];
 
-  constructor(private tareaService: TareaService) {}
-
-  applyFilterGlobal($event:any, stringVal:string) {
-    this.dt?.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
+  constructor(private tareaService: TareaService, private router: Router) {
+    this.ngOnInit();
   }
 
   ngOnInit() {
-    this.tareaService.getCustomersLarge().then((tareas:any) => {
-      this.tareas = tareas;
-      this.loading = false;
-
-      this.tareas.forEach(
-        (tareas) => (tareas.fecha = new Date(<Date>tareas.fecha))
-      );
+    this.tareaService.getTareas().subscribe({
+      next: (data) => {
+        this.tareas = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error al obtener productos:', err);
+      }
     });
 
     this.statuses = [
-      { label: 'Unqualified', value: 'unqualified' },
-      { label: 'Qualified', value: 'qualified' },
-      { label: 'New', value: 'new' },
-      { label: 'Negotiation', value: 'negotiation' },
-      { label: 'Renewal', value: 'renewal' },
-      { label: 'Proposal', value: 'proposal' },
+      { label: 'Pendiente', value: false },
+      { label: 'Atendido', value: true }
     ];
   }
 
@@ -49,23 +43,26 @@ export class TareaListComponent implements OnInit {
     table.clear();
   }
   
-  getSeverity(status: string) {
-    switch (status) {
-      case 'unqualified':
-        return 'danger';
-
-      case 'qualified':
-        return 'success';
-
-      case 'new':
-        return 'info';
-
-      case 'negotiation':
-        return 'warning';
-
-      case 'renewal':
-        return undefined;
+  getSeverity(status: Boolean) {
+    if(status){
+      return 'success';
+    }else{
+      return 'danger';
     }
-    return undefined;
+  }
+
+  clonedTareas: { [s: string]: Tarea } = {};
+
+  onRowEditInit(tarea: Tarea) {
+    this.clonedTareas[tarea.id as number] = { ...tarea };
+}
+
+  onRowEditSave(tarea: Tarea) {
+
+  }
+
+  onRowEditCancel(tarea: Tarea, index: number) {
+      this.tareas[index] = this.clonedTareas[tarea.id as number];
+      delete this.clonedTareas[tarea.id as number];
   }
 }

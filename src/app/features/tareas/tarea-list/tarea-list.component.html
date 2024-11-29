@@ -7,43 +7,33 @@
         [rowsPerPageOptions]="[10, 25, 50]"
         [loading]="loading"
         [paginator]="true"
-        [globalFilterFields]="['titulo', 'descripcion', 'responsable', 'estado']"
+        editMode="row"
         [tableStyle]="{ 'min-width': '75rem' }"
     >
-    <ng-template pTemplate="caption">
-        <div class="flex">
-            <p-iconField iconPosition="left" class="ml-auto">
-                <p-inputIcon>
-                    <i class="pi pi-search"></i>
-                </p-inputIcon>
-                <input 
-                    pInputText 
-                    type="text" 
-                    (input)="applyFilterGlobal($event, 'contains')"
-                    placeholder="Buscar" />
-            </p-iconField>
-        </div>
-    </ng-template>
+
+
     <ng-template pTemplate="header">
         <tr>
             <th style="width:22%">Titulo</th>
-            <th style="width:22%">Descripcion</th>
+            <th style="width:22%">Detalle</th>
             <th style="width:22%">Responsable</th>
+            <th style="width:22%">Fecha de inicio</th>
+            <th style="width:22%">Fecha de fin</th>
             <th style="width:22%">Estado</th>
         </tr>
         <tr>
             <th>
                 <p-columnFilter 
                     type="text"
-                    field="titulo" 
+                    field="title" 
                     placeholder="Buscar por Titulo" 
                     ariaLabel="Filter Name" />
             </th>
             <th>
                 <p-columnFilter 
                     type="text"
-                    field="descripcion"
-                    placeholder="Buscar por Descripción" 
+                    field="detail"
+                    placeholder="Buscar por Detalle" 
                     ariaLabel="Filter Country" />
             </th>
             <th>
@@ -53,9 +43,11 @@
                     placeholder="Buscar por Responsable" 
                     ariaLabel="Filter Country" />
             </th>
-             
+
+            <th></th>
+            <th></th>
             <th>
-                <p-columnFilter field="estado" matchMode="equals" [showMenu]="false">
+                <p-columnFilter field="completed" matchMode="equals" [showMenu]="false">
                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                         <p-dropdown 
                             [ngModel]="value" 
@@ -65,23 +57,34 @@
                             [showClear]="true">
                                 <ng-template let-option pTemplate="item">
                                     <p-tag 
-                                        [value]="option.value" 
-                                        [severity]="getSeverity(option.label)" />
+                                        [value]="option.label" 
+                                        [severity]="getSeverity(option.value)" />
                                 </ng-template>
                         </p-dropdown>
                     </ng-template>
                 </p-columnFilter>
             </th>
+            <th style="width:20%"></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-tareas>
-        <tr>
+
+    <ng-template pTemplate="body" let-tareas let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="tareas">
             <td>
-                {{ tareas.titulo }}
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input 
+                            pInputText type="text" 
+                            [(ngModel)]="tareas.title" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{tareas.title}}
+                    </ng-template>
+                </p-cellEditor>
             </td>
             <td>
                 <span class="ml-1 vertical-align-middle">
-                    {{ tareas.descripcion }}
+                    {{ tareas.detail }}
                 </span>
             </td>
             <td>
@@ -90,15 +93,59 @@
                 </span>
             </td>
             <td>
-                <p-tag 
-                    [value]="tareas.estado" 
-                    [severity]="getSeverity(tareas.estado)" />
+                <span class="ml-1 vertical-align-middle">
+                    {{ tareas.fechaInicial }}
+                </span>
             </td>
+            <td>
+                <span class="ml-1 vertical-align-middle">
+                    {{ tareas.fechaFinal }}
+                </span>
+            </td>                        
+            <td>
+                <p-tag 
+                    [value]="tareas.completed | convertirBoolean" 
+                    [severity]="getSeverity(tareas.completed)" />
+            </td>
+
+            <td>
+                <div class="flex align-items-center justify-content-center gap-2">
+                    <button 
+                        *ngIf="!editing" 
+                        pButton 
+                        pRipple 
+                        type="button" 
+                        pInitEditableRow 
+                        icon="pi pi-pencil" 
+                        (click)="onRowEditInit(tareas)" 
+                        class="p-button-rounded p-button-text">
+                    </button>
+                    <button 
+                        *ngIf="editing" 
+                        pButton 
+                        pRipple 
+                        type="button" 
+                        pSaveEditableRow 
+                        icon="pi pi-check" 
+                        (click)="onRowEditSave(tareas)" 
+                        class="p-button-rounded p-button-text p-button-success mr-2">
+                    </button>
+                    <button 
+                        *ngIf="editing" 
+                        pButton pRipple 
+                        type="button" 
+                        pCancelEditableRow 
+                        icon="pi pi-times" 
+                        (click)="onRowEditCancel(tareas, ri)" 
+                        class="p-button-rounded p-button-text p-button-danger">
+                    </button>
+                </div>
+            </td> 
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
-            <td colspan="5">No customers found.</td>
+            <td colspan="5">No se han encontrado tareas.</td>
         </tr>
     </ng-template>
     </p-table>

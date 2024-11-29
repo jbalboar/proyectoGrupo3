@@ -19,12 +19,16 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
+import { ConvertirBooleanPipe } from '../../core/pipes/convertir-boolean.pipe';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
     TareaComponent,
     TareaListComponent,
-    MenuComponent
+    MenuComponent,
+    ConvertirBooleanPipe
   ],
   imports: [
     CommonModule,
@@ -43,7 +47,11 @@ import { DropdownModule } from 'primeng/dropdown';
     IconFieldModule,
     InputIconModule,
     TagModule,
-    DropdownModule
+    DropdownModule,
+    RouterModule,
+    ButtonModule,
+    InputTextModule
+    
   ],
   exports: [
     TareaComponent,
