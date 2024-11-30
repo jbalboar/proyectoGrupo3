@@ -21,4 +21,16 @@ export class TareaService {
     console.error('Ocurrió un error:', error);
     return throwError('Ocurrió un error al mostrar las tareas');
   }
+
+  /**
+   * 
+   * @param tarea
+   * @returns
+   * @author Jean Pierre García
+   */
+  createTask(tarea: Tarea): Observable<Tarea[]> {
+    return this.http.post<Tarea[]>(this.urlBase, tarea).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

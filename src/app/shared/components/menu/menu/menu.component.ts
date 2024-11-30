@@ -26,4 +26,11 @@ export class MenuComponent {
   mostrarLista() {
     this.router.navigate(['/tarea/lista']);
   }
+
+  /**
+   * @author Jean Pierre García
+   */
+  mostrarCrear() {
+    this.router.navigate(['/tarea/crear']);
+  }
 }

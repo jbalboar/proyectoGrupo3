@@ -4,6 +4,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { TareaComponent } from './features/tareas/tarea/tarea.component';
 import { AuthGuard } from './core/guardians/auth.guard';
 import { TareaListComponent } from './features/tareas/tarea-list/tarea-list.component';
+import { TareaCreateComponent } from './features/tareas/tarea-create/tarea-create.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'tarea', component: TareaComponent, 
     canActivate: [AuthGuard],
     children:[
-      {path: "lista", component: TareaListComponent}
+      {path: "lista", component: TareaListComponent},
+      {path: "crear", component: TareaCreateComponent}
     ]
   },
 ];

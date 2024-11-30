@@ -1,0 +1,72 @@
+<div class="form-container">
+  <h3>Registrar Nueva Tarea</h3>
+  <form [formGroup]="crearForm" (ngSubmit)="createTask()" class="task-form">
+    <div class="field-group">
+      <div class="field">
+        <label for="title">Título</label>
+        <input
+          id="title"
+          type="text"
+          formControlName="title"
+          required
+          placeholder="Título de la tarea"
+        />
+      </div>
+      <div class="field">
+        <label for="responsable">Responsable</label>
+        <input
+          id="responsable"
+          type="text"
+          formControlName="responsable"
+          required
+          placeholder="Responsable"
+        />
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        <label for="fechaInicial">Fecha Inicial</label>
+        <input
+          id="fechaInicial"
+          type="date"
+          formControlName="fechaInicial"
+          required
+        />
+      </div>
+      <div class="field">
+        <label for="fechaFinal">Fecha Final</label>
+        <input
+          id="fechaFinal"
+          type="date"
+          formControlName="fechaFinal"
+          required
+        />
+      </div>
+    </div>
+    <div class="field">
+      <label for="detail">Detalle</label>
+      <textarea
+        id="detail"
+        formControlName="detail"
+        required
+        placeholder="Detalles de la tarea"
+      ></textarea>
+    </div>
+    <div class="field">
+      <label for="completed">Estado</label>
+      <select id="completed" formControlName="completed" required>
+        <option [value]="false">Pendiente</option>
+        <option [value]="true">Completada</option>
+      </select>
+    </div>
+    <!-- Botón de Envío -->
+    <div class="flex-center">
+      <p-button
+        icon="pi pi-verified"
+        label="Registrar tarea"
+        type="submit"
+        [disabled]="crearForm.invalid"
+      ></p-button>
+    </div>
+  </form>
+</div>

@@ -23,6 +23,7 @@ import { ConvertirBooleanPipe } from '../../core/pipes/convertir-boolean.pipe';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ResaltarTareaPendienteDirective } from '../../core/directives/resaltar-tarea-pendiente.directive';
+import { TareaCreateComponent } from './tarea-create/tarea-create.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ResaltarTareaPendienteDirective } from '../../core/directives/resaltar-
     TareaListComponent,
     MenuComponent,
     ConvertirBooleanPipe,
-    ResaltarTareaPendienteDirective
+    ResaltarTareaPendienteDirective,
+    TareaCreateComponent
   ],
   imports: [
     CommonModule,
