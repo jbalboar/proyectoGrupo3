@@ -22,6 +22,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { TareasModule } from './features/tareas/tareas.module';
 import { SharedMessageService } from './core/services/message/shared-message.service';
 import { ConvertirBooleanPipe } from './core/pipes/convertir-boolean.pipe';
+import { ResaltarTareaPendienteDirective } from './core/directives/resaltar-tarea-pendiente.directive';
 
 @NgModule({
   declarations: [

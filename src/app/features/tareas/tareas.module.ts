@@ -22,13 +22,15 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ConvertirBooleanPipe } from '../../core/pipes/convertir-boolean.pipe';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { ResaltarTareaPendienteDirective } from '../../core/directives/resaltar-tarea-pendiente.directive';
 
 @NgModule({
   declarations: [
     TareaComponent,
     TareaListComponent,
     MenuComponent,
-    ConvertirBooleanPipe
+    ConvertirBooleanPipe,
+    ResaltarTareaPendienteDirective
   ],
   imports: [
     CommonModule,

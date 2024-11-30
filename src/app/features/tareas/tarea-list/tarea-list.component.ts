@@ -3,11 +3,13 @@ import { Tarea } from '../../../core/models/tarea/tarea';
 import { Table } from 'primeng/table';
 import { TareaService } from '../../../core/services/tarea/tarea.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-tarea-list',
   templateUrl: './tarea-list.component.html',
   styleUrl: './tarea-list.component.css',
+  providers: [MessageService]
 })
 export class TareaListComponent implements OnInit {
   tareas!: Tarea[];
@@ -18,7 +20,7 @@ export class TareaListComponent implements OnInit {
 
   activityValues: number[] = [0, 100];
 
-  constructor(private tareaService: TareaService, private router: Router) {
+  constructor(private messageService: MessageService, private tareaService: TareaService, private router: Router) {
     this.ngOnInit();
   }
 
@@ -58,7 +60,11 @@ export class TareaListComponent implements OnInit {
 }
 
   onRowEditSave(tarea: Tarea) {
-
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Actualización Correcta!',
+      detail: 'Se actualizó el registro correctamente.',
+    });
   }
 
   onRowEditCancel(tarea: Tarea, index: number) {

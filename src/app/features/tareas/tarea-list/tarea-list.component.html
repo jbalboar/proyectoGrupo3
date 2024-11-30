@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="card">
     <p-table
         #dt2
@@ -69,7 +70,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-tareas let-editing="editing" let-ri="rowIndex">
-        <tr [pEditableRow]="tareas">
+        <tr [pEditableRow]="tareas" [appResaltarTareaPendiente]="tareas.completed">
             <td>
                 <p-cellEditor>
                     <ng-template pTemplate="input">
@@ -94,12 +95,12 @@
             </td>
             <td>
                 <span class="ml-1 vertical-align-middle">
-                    {{ tareas.fechaInicial }}
+                    {{ tareas.fechaInicial | date:'dd/MM/yyyy' }}
                 </span>
             </td>
             <td>
                 <span class="ml-1 vertical-align-middle">
-                    {{ tareas.fechaFinal }}
+                    {{ tareas.fechaFinal | date:'dd/MM/yyyy' }}
                 </span>
             </td>                        
             <td>
