@@ -23,11 +23,13 @@ import { TareasModule } from './features/tareas/tareas.module';
 import { SharedMessageService } from './core/services/message/shared-message.service';
 import { ConvertirBooleanPipe } from './core/pipes/convertir-boolean.pipe';
 import { ResaltarTareaPendienteDirective } from './core/directives/resaltar-tarea-pendiente.directive';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

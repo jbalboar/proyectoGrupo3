@@ -9,7 +9,7 @@ import { Tarea } from '../../models/tarea/tarea';
 export class TareaService {
   private urlBase = 'http://localhost:5000/tasks';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getTareas(): Observable<Tarea[]> {
     return this.http
@@ -29,8 +29,36 @@ export class TareaService {
    * @author Jean Pierre García
    */
   createTask(tarea: Tarea): Observable<Tarea[]> {
+
     return this.http.post<Tarea[]>(this.urlBase, tarea).pipe(
       catchError(this.handleError)
     );
   }
+
+  /**
+   * 
+   * @param tarea
+   * @returns
+   * @author Washington Huallpamaita
+   * @abstract Implementa servicio para actualizar una tarea
+   */
+  updateTask(tarea: Tarea): Observable<Tarea[]> {
+    let id = tarea.id;
+    return this.http.put<Tarea[]>(this.urlBase + "/" + id, tarea).pipe(
+      catchError(this.handleError)
+    );
+  }
+  /**
+ * 
+ * @param tarea
+ * @returns
+ * @author Washington Huallpamaita
+  * @abstract Implementa servicio para eliminar una tarea
+ */
+  deleteTask(id: Number): Observable<Tarea[]> {
+    return this.http.delete<Tarea[]>(this.urlBase + "/" + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 }
