@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ConvertirBooleanPipe implements PipeTransform {
 
+  /**
+  * @author Juan Balboa Rojas
+  */
   transform(value: boolean): string {
     return value ? 'Atendido' : 'Pendiente';
   }

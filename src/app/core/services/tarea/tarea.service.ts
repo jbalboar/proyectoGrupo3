@@ -11,6 +11,9 @@ export class TareaService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+  * @author Juan Balboa Rojas
+  */
   getTareas(): Observable<Tarea[]> {
     return this.http
       .get<Tarea[]>(this.urlBase)

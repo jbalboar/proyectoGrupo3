@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuComponent } from './menu.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../../../../env/environment';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToolbarModule } from 'primeng/toolbar';
+import { AvatarModule } from 'primeng/avatar';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
@@ -8,7 +14,10 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MenuComponent]
+      imports: [AngularFireModule.initializeApp(environment.firebasase), ToolbarModule, AvatarModule],
+      declarations: [MenuComponent],
+      providers: [AuthService, AngularFireAuth]
+
     })
     .compileComponents();
 

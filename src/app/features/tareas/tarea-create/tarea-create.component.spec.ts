@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TareaCreateComponent } from './tarea-create.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ButtonModule } from 'primeng/button';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('TareaCreateComponent', () => {
   let component: TareaCreateComponent;
@@ -8,6 +11,7 @@ describe('TareaCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[HttpClientModule, ReactiveFormsModule, ButtonModule],
       declarations: [TareaCreateComponent]
     })
     .compileComponents();

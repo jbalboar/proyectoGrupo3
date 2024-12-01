@@ -9,6 +9,9 @@ export class ResaltarTareaPendienteDirective {
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
+  /**
+  * @author Juan Balboa Rojas
+  */
   ngOnInit() {
     // Verifica si la tarea no está completada (tareas.completed === false)
     if (!this.appResaltarTareaPendiente) {
